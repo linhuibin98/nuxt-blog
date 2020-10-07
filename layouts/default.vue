@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <default-header />
+    <default-header :scroll-position="scrollPosition" />
     <site-desc />
     <site-content>
       <Nuxt />
@@ -21,7 +21,17 @@ import SiteContent from '~/components/site-content.vue'
     SiteContent,
   },
 })
-export default class Name extends Vue {}
+export default class Default extends Vue {
+  public scrollPosition: number = 0
+
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('scroll', () => {
+        this.scrollPosition = window.scrollY
+      })
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>

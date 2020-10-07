@@ -1,5 +1,5 @@
 <template>
-  <header class="default-header">
+  <header class="default-header" :class="{ hover: scrollPosition > 100 }">
     <nav class="between">
       <div class="toggle-btn none"></div>
       <div class="author-info center">
@@ -20,15 +20,21 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import SearchBar from './search-bar.vue'
 
 @Component({
   components: {
     SearchBar,
-  }
+  },
 })
-export default class DefaultHeder extends Vue {}
+export default class DefaultHeder extends Vue {
+  @Prop({
+    type: Number,
+    default: 0,
+  })
+  scrollPosition!: number
+}
 </script>
 
 <style lang="scss" scoped>

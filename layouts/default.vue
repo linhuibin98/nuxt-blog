@@ -2,7 +2,7 @@
   <div id="app">
     <default-header :scroll-position="scrollPosition" />
     <site-desc />
-    <site-content>
+    <site-content :scroll-position="scrollPosition">
       <Nuxt />
     </site-content>
   </div>

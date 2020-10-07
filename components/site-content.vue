@@ -1,7 +1,11 @@
 <template>
   <div class="site-main main flex">
     <!-- 站点概览 -->
-    <div class="site-preview">
+    <div
+      ref="sitePreview"
+      class="site-preview"
+      :class="{ 'scroll-fixed': scrollPosition >= 262 }"
+    >
       <!-- 个人信息：头像，名字 -->
       <div class="personal-info__wrapper ccenter">
         <div class="personal-avatar">
@@ -61,6 +65,11 @@
         <li class="tag-lists__item">gfg</li>
       </ul>
     </div>
+    <div
+      v-if="scrollPosition >= 262"
+      class="site-preview2"
+      :style="{ height: sitePreviewHeight + 'px' }"
+    ></div>
     <!-- 站点内容 -->
     <div class="site-content flex1">
       <slot></slot>
@@ -69,10 +78,25 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component({})
-export default class SiteContent extends Vue {}
+export default class SiteContent extends Vue {
+  @Prop({
+    type: Number,
+    default: 0,
+  })
+  scrollPosition!: number
+
+  public sitePreviewHeight: number = 0
+
+  mounted() {
+    this.$nextTick(() => {
+      this.sitePreviewHeight = (this.$refs
+        .sitePreview as any).getBoundingClientRect().height
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -80,12 +104,22 @@ export default class SiteContent extends Vue {}
   padding-top: 20px;
   padding-bottom: 20px;
 
+  .site-preview2 {
+    width: 280px;
+  }
+
   .site-preview {
     width: 280px;
     padding: 10px;
     background-color: $content-bg;
     border-radius: $border-radius-main;
     height: min-content;
+
+    &.scroll-fixed {
+      position: fixed;
+      top: 80px;
+      left: 35px;
+    }
 
     .personal-info__wrapper {
       .personal {

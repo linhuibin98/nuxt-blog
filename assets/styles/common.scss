@@ -1,0 +1,58 @@
+// mixin
+@mixin display($value) {
+  display: $value;
+}
+@mixin flex($value: 1) {
+  flex: $value;
+}
+// display
+.none { @include display(none); }
+.block { @include display(block); }
+.inline-block { @include display(block); }
+.flex { @include display(flex); }
+.flex1 { @include flex(1); }
+
+// flex-center
+@mixin flexLayout($justify: center, $align: center, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+.center {
+  @include flexLayout();
+}
+.ccenter {
+  @include flexLayout($direction: column);
+}
+.acenter {
+  @include flexLayout($justify: flex-start);
+}
+.jcenter {
+  @include flexLayout($align: flex-start);
+}
+.between {
+  @include flexLayout($justify: space-between)
+}
+
+// font
+@mixin weight($value: 600) {
+  font-weight: $value;
+}
+.fw600 { @include weight(); }
+
+// margin
+
+// padding
+.pl6 { padding-left: 6px; }
+.pl8 { padding-left: 8px; }
+.pl10 { padding-left: 10px; }
+.pl12 { padding-left: 12px; }
+.pl15 { padding-left: 15px; }
+
+// layout
+.main {
+  width: 100%;
+  padding: 0 35px;
+}
+

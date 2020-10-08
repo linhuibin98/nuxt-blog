@@ -19,6 +19,12 @@
   justify-content: $justify;
   align-items: $align;
 }
+.row {
+  @include flexLayout($direction: row, $justify: flex-start, $align: flex-start);
+}
+.column {
+  @include flexLayout($direction: column, $justify: flex-start, $align: flex-start);
+}
 .center {
   @include flexLayout();
 }
@@ -32,7 +38,12 @@
   @include flexLayout($align: flex-start);
 }
 .between {
-  @include flexLayout($justify: space-between)
+  @include flexLayout($justify: space-between);
+}
+
+.flex-wrap {
+  @include flexLayout($justify: flex-start);
+  flex-wrap: wrap;
 }
 
 // font

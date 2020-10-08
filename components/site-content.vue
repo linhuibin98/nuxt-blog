@@ -3,7 +3,7 @@
     <!-- 站点概览 -->
     <div
       ref="sitePreview"
-      class="site-preview"
+      class="site-preview scroller"
       :class="{ 'scroll-fixed': scrollPosition >= 262 }"
     >
       <!-- 个人信息：头像，名字 -->
@@ -52,26 +52,26 @@
       </h4>
       <ul class="tag-lists">
         <li class="tag-lists__item">sdfsdf</li>
-        <li class="tag-lists__item">sfd</li>
-        <li class="tag-lists__item">gfg</li>
-        <li class="tag-lists__item">sdsdfsf</li>
-        <li class="tag-lists__item">sfsdfd</li>
-        <li class="tag-lists__item">gsfgsdf</li>
-        <li class="tag-lists__item">ssdfsddf</li>
-        <li class="tag-lists__item">sfd</li>
-        <li class="tag-lists__item">gfg</li>
-        <li class="tag-lists__item">sfsdfdf</li>
-        <li class="tag-lists__item">sfd</li>
-        <li class="tag-lists__item">gfg</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
+        <li class="tag-lists__item">sdfsdf</li>
       </ul>
     </div>
-    <div
-      v-if="scrollPosition >= 262"
-      class="site-preview2"
-      :style="{ height: sitePreviewHeight + 'px' }"
-    ></div>
     <!-- 站点内容 -->
-    <div class="site-content flex1">
+    <div class="site-content flex flex1">
       <slot></slot>
     </div>
   </div>
@@ -82,20 +82,14 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component({})
 export default class SiteContent extends Vue {
+  // props
   @Prop({
     type: Number,
     default: 0,
   })
   scrollPosition!: number
 
-  public sitePreviewHeight: number = 0
-
-  mounted() {
-    this.$nextTick(() => {
-      this.sitePreviewHeight = (this.$refs
-        .sitePreview as any).getBoundingClientRect().height
-    })
-  }
+  // data
 }
 </script>
 
@@ -116,9 +110,10 @@ export default class SiteContent extends Vue {
     height: min-content;
 
     &.scroll-fixed {
-      position: fixed;
+      position: sticky;
       top: 80px;
       left: 35px;
+      overflow: auto;
     }
 
     .personal-info__wrapper {
@@ -238,7 +233,7 @@ export default class SiteContent extends Vue {
   }
 
   .site-content {
-    padding: 10px;
+    margin: 0 20px;
   }
 }
 </style>

@@ -11,7 +11,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'http://at.alicdn.com/t/font_2115727_2gnq0qdxbgp.css',
+        href: 'http://at.alicdn.com/t/font_2115727_am88n0289dn.css',
       },
     ],
   },

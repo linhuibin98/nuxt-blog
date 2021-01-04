@@ -9,6 +9,7 @@
       <i class="iconfont icon-sousuo"></i>
     </div>
     <input
+      v-show="show"
       ref="searchIpt"
       class="search-input"
       :class="{ 'search-input--open': show }"
